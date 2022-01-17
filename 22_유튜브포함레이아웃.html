@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유튜브포함레이아웃</title>
+    <style>
+         @font-face {       /* 눈누 사이트에서 00체 들어가면 웹폰트로 사용에 코드내용 나와있음 복붙하면된다 여러개 해도 된다 */
+    font-family: 'HSYuji-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+       * {margin: 0; padding: 0;}
+       li {list-style: none;} /* 아마 list 만들어질 때 초기의 점 이거 없애주는듯 하다  */
+       a {
+           text-decoration: none;
+           color: #333;
+           display: block;
+       }
+       html, body {
+           color: #333;
+           font-family: 'HSYuji-Regular'; /* 여기 html, body에 적용했으니까 전체에 폰트적용된거고, 섹션별로 다르게 적용하려면 각 선택자에게 font-family를 적용한다. */
+       }
+       /* 이미지가 왼쪽에 있는 레이아웃 */
+       .left {
+           width: 1600px;
+           margin: 100px auto;  /*  margin:100은 상하좌우 네변 모두 100px의 여백을 가지고 margin:100px auto는 위 아래는 100px 좌우는 auto로 가운데 배치할 수 있도록 한다. 
+                                    그래서 위아래 100px 간격을 가지고 가운대 배치되도록 만들어주는게 margin: 100px auto에요 */
+       }
+       .left .top {
+           display: flex;
+           /* figure와 div가 가로로 나열 */
+           height: 500px;
+           align-items: center; /* 가로로 나열되어 있는 요소들을 수직정렬 시켜주는 것 : 가운데 정렬 */
+           margin-bottom: 50px;
+        }
+       .left .top figure {    /* figure는 이미지가 가질 사이즈를 잡아준다. */
+           width: 60%; 
+           height: 100%;
+       }
+       .left .top figure img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+        }
+        .left .top div {
+            width: 40%;
+            padding: 0 60px;
+            /* 가로값 + 패딩값 =>  */
+            /* 패딩값을 포함해서 가로값   box-sizing:border-box; */
+            box-sizing: border-box;
+        }
+        /* 오른쪽에 있는 텍스트 div */
+        .left .top div h4 {
+             /* 글자 크기 25px */
+             font-size: 25px;
+        }    
+        .left .top div .txt {
+            /* 글자크기 16px 
+               글자컬러 #7D7D7D */
+               font-size: 16px;
+               color: #7d7d7d;
+        }
+        .left .top div dl {
+            /* dt와 dd 가로정렬 flex 사용 */
+            display: flex;
+        }
+        .left .top div dl dt {
+            /* 가로값 120px */
+            /* 글자두께 두껍게 */
+            width: 120px;
+            font-weight: bold;
+        }
+        .left .top div .info {
+            /* 글자크기 18px */
+            /* 윗쪽과의 간격 30px */
+            /* 아랫쪽과의 간격 40px */
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .left .top div ul {
+            display: flex;
+        }
+        .left .top div ul li {
+            width: 130px;
+            height: 45px;
+            border: 1px solid #333;
+            text-align: center;
+            line-height: 45px;
+            margin-right: 23px;
+        }
+        .left .top div ul li:first-child {
+            background-color: palevioletred;
+            border: 1 solid palevioletred; /* border:0 외곽선 없애기 */
+        }
+        .left .top div ul li:first-child a {
+            color: #fff;
+        }
+        .left .top div ul li:first-child:hover {
+            background-color: rgb(216, 112, 129);
+            box-shadow: 0 5px 15px rgb(246, 84, 111);
+                /* 유튜브 스타일 */
+        }
+        .bottom div {
+            width: 100%;
+            padding-bottom: 56.25%;   /* 16:9 비율 */                  /* 웹사이트의 F12로 들어가면 미리보기를 통해 조절가능 */
+            position: relative;
+        }
+        .bottom div iframe {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+        }
+        /***** 그래픽 디자인 *****/
+        .g_design {
+            text-align: center;
+            background: url('images/cont_bg.jpg') center center / cover no-repeat;
+            padding: 100px;
+            background-attachment: fixed;
+        }
+        .g_design h3 {
+            font-size: 50px;
+        }
+        .g_design ul {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .g_design ul li {
+           margin: 0 17px;
+        }
+        .g_design div {
+            width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .g_design div figure {
+            width: 32%;
+            height: 335px;
+            margin: 20px 0;
+        }
+        .g_design div figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* footer 푸터 */
+        footer {
+            background-color: #333;
+            padding: 50px 0;
+        }
+        footer dl {
+            width: 300px;
+            display: flex;
+            margin: 7px auto;/* margin 2개 적용되면 밑의 것이 적용된다. 그러니 밑 기준으로 합쳐야한다 */
+        }
+        footer dl dt {
+            color: #fff;
+            width: 150px;
+        }
+        footer dl dd {color: #fff;}
+        footer dl dd {color: #fff;}
+        footer p {
+            color: #fff;
+            text-align: center;
+        }
+        footer p a {color: #fff;}  
+        footer .copy {color: rgba(255, 255, 255, 0.4);  /* rgba에서 a는 alpha이며 투명도 조절이다 */ 
+                      margin-top: 40px;      
+        }
+        
+        /* 반응형 media screen (pc mobile tv notebook tablet으로  변함에 따라 스크롤 생기지 않게 착 달라붙는 screen 만드는 것) */
+        /* 
+        기본적인 해상도 크기 1920, 태블릿으로 넘어가는 크기 1024 모바일 + 태블릿 767px 모바일 480 ~ 320px 
+        */
+        /* 컨테이너 중심축 가로크기 100% */
+        @media screen and (max-width: 1600px) {} /* 여기에는 ; 즉 세미콜론 없어야함 */ 
+        /* 마우스 우측클릭 - 검사 - 좌측상단 네모와 커서 있는 거 클릭 - 웹사이트 보고싶은거 분석하고싶은거에 호버링하기 - 큰단위 선택하면 width 알 수 있다. */
+        .left {
+            width: 100%;
+        }    
+        .g_design div {
+            width: 100%;
+        } /* 1600 */
+        /* 해상도크기 1024px 이하일 때 부터 */ /* 100%로 반응형을 만들면 인터넷 불안정할 때 naver 들어가면 글자가 줄줄이 세로로 짧게 나열되는것처럼 되는 문제있음 */
+        @media screen and (max-width: 1024px) {
+            .left:nth-child(2) .top div {
+                order: 1;  /* flex 자식요소의 순번을 변경, -1이면 앞으로 1이면 뒤로 뭐 이런식 */
+            }
+            .left .top {
+                flex-wrap: wrap; /* 반응형에서 display:flex가 있으므로 하는거 같다. */
+                height: auto;
+            } 
+            .left .top figure {width: 100%;}
+            .left .top div {
+                width: 100%;
+                padding: 0 20px;
+            }
+        } /* 1024 */
+
+        @media screen and (max-width: 767px) { /* figure의 선택자를 우클릭 - 검사 를 통해 찾아서 가로값 49%로 설정 */
+               .g_design div figure {width: 49%;} /* 각 이미지마다 49%이니까 2개 하면 98% 즉 2%의 좌우 여백이 생긴다 */
+        } /* 767 */  
+
+        @media screen and (max-width: 414px) {
+            .g_design div figure {
+                width: 100%;
+                margin: 10px 0;
+            }
+        } /* 414 */
+        /* 이거 media screen max마다 설정해주는거 보니까 기기마다 설정을 해주는듯함 혹은 표준 기준 767 1024 1920 으로 맞춰서 기준을 세팅해놓는듯 */
+    </style>
+</head>
+<body>
+    <section class="left">
+        <div class="top">
+          <figure>
+              <img src="images/bg01.jpg" alt="노트북 향수병" />  <!-- <> </> 한번에는 < /> -->
+          </figure> 
+          <div>
+              <h4>바버, 오늘과 과거를 잇다</h4>
+              <p class="txt">연출, 촬영, 편집, 특수효과</p>
+              <dl>
+                  <dt>프로그램</dt>
+                  <dd>Premiere pro</dd>
+              </dl>
+              <dl>
+                  <dt>러닝타임</dt>
+                  <dd>2m 15s</dd>
+              </dl>
+              <dl>
+                  <dt>BGM</dt>
+                  <dd>브금대통령 - 여름밤의 꿈</dd>
+              </dl>    
+              <p class="info">제작 목적 및 콘셉트 Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, dicta aperiam. Culpa in quaerat optio similique nemo, consequuntur necessitatibus eius veritatis, quo exercitationem impedit molestiae sit eaque sapiente, soluta neque?</p>
+              <ul>
+                  <li><a href="#">영상보기</a></li>
+                  <li><a href="#">기획서보기</a></li>
+                </ul>
+            </div> 
+        </div> <!-- .top end -->
+        <div class="bottom">
+            <div>
+                    <!-- 유튜브 연결 -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4uo0OTu7Iro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div> 
+        </div> <!-- .bottom end -->    
+   </section> <!-- .left end -->
+    <section class="left">
+        <div class="top">
+
+          <div>
+              <h4>바버, 오늘과 과거를 잇다</h4>
+              <p class="txt">연출, 촬영, 편집, 특수효과</p>
+              <dl>
+                  <dt>프로그램</dt>
+                  <dd>Premiere pro</dd>
+              </dl>
+              <dl>
+                  <dt>러닝타임</dt>
+                  <dd>2m 15s</dd>
+              </dl>
+              <dl>
+                  <dt>BGM</dt>
+                  <dd>브금대통령 - 여름밤의 꿈</dd>
+              </dl>    
+              <p class="info">제작 목적 및 콘셉트 Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, dicta aperiam. Culpa in quaerat optio similique nemo, consequuntur necessitatibus eius veritatis, quo exercitationem impedit molestiae sit eaque sapiente, soluta neque?</p>
+              <ul>
+                  <li><a href="#">영상보기</a></li>
+                  <li><a href="#">기획서보기</a></li>
+                </ul>
+            </div> 
+            <figure>
+                <img src="images/bg01.jpg" alt="노트북 향수병" />  <!-- <> </> 한번에는 < /> -->
+            </figure> 
+        </div> <!-- .top end -->
+        <div class="bottom">
+            <div>
+                    <!-- 유튜브 연결 -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/4uo0OTu7Iro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div> 
+        </div> <!-- .bottom end -->    
+   </section> <!-- .left end -->
+
+   <!-- 그래픽 디자인, 시각디자인 -->
+   <section class="g_design">
+       <h3>GRAPHIC DESIGN</h3>
+       <ul>
+           <li><a href="#">카테고리</a></li>
+           <li><a href="#">BI/CI디자인</a></li>
+           <li><a href="#">시안제작</a></li>
+           <li><a href="#">카테고리</a></li>
+       </ul>
+       <div>
+           <figure>
+               <img src="images/img02.jpg" alt="사라다!" />
+           </figure> <!-- 1 -->
+           <figure>
+               <img src="images/img03.jpg" alt="사라다!" />
+           </figure> <!-- 2 -->
+           <figure>
+               <img src="images/img04.jpg" alt="사라다!" />
+           </figure> <!-- 3 -->
+           <figure>
+               <img src="images/img02.jpg" alt="사라다!" />
+           </figure> <!-- 4 -->
+           <figure>
+               <img src="images/img03.jpg" alt="사라다!" />
+           </figure> <!-- 5 -->
+           <figure>
+               <img src="images/img04.jpg" alt="사라다!" />
+           </figure> <!-- 6 -->
+       </div>
+   </section> <!-- g_design end -->
+   <footer>
+       <dl>
+           <dt>연락처 </dt>
+           <dd><a href="#">010.1234.5555</a></dd>    <!-- #에는 ex tel:010-1234-5555 -->
+       </dl>
+       <dl>
+           <dt>카카오톡 아이디</dt>
+           <dd>카카오톡 아이디명</dd>
+       </dl>
+       <p class="down"><a href="#">이력서 다운</a></p>
+       <p class="copy">COPYRIGHT 2022 DESIGNER DONGHYUN KIM .ALL RIGHTS RESERVED.</p>
+   </footer>
+</body>
+</html> <!-- 키보드 end home page up/down 으로 빠르게 이동가능! -->  <!-- animate.css를 검색하면 웹페이지 참고할만한 거 나온다고 함 --> 
